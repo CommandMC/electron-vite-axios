@@ -12,6 +12,7 @@ process.env.PUBLIC = app.isPackaged ? process.env.DIST : join(process.env.DIST, 
 
 import { join } from 'path'
 import { app, BrowserWindow } from 'electron'
+import axios from 'axios'
 
 let win: BrowserWindow | null
 // Here, you can also use other preload
@@ -28,6 +29,8 @@ function createWindow() {
       preload,
     },
   })
+
+  axios.get('https://www.example.com').catch(console.log)
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
